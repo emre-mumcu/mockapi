@@ -1,0 +1,10 @@
+@MockAPI_HostAddress = https://localhost:5001
+
+GET {{MockAPI_HostAddress}}/users
+###
+
+GET {{MockAPI_HostAddress}}/users/1
+###
+
+GET {{MockAPI_HostAddress}}/data/actionresulttypes
+###

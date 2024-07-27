@@ -1,0 +1,13 @@
+{
+    "Database": {
+        "ConnectionString" : "Data Source=MockAPI.db"
+    },
+    "TokenParameters": {
+        "Issuer":"MockAPI",
+        "Audience":"*",
+        "Timeout":20,
+        "SignKey":"0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF",
+        "EncryptKey":"0123456789ABCDEF",
+        "ClockSkew": 1
+  }
+}
