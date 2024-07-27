@@ -131,12 +131,13 @@ public partial class TokenService : ITokenService
         return tokenHandler.WriteToken(token);
     }
 
-    public bool ValidateToken(string Token, out string Message, out SecurityToken? JWT)
+    public bool ValidateToken(string Token, out string Message, out SecurityToken? JWT, out ClaimsPrincipal? claimsPrincipal)
     {
         try
         {
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
             ClaimsPrincipal user = tokenHandler.ValidateToken(Token, GetTokenValidationParameters(), out JWT);
+            claimsPrincipal = user;
             Message = "Token is validated";
             return true;
         }
@@ -144,23 +145,26 @@ public partial class TokenService : ITokenService
         {
             Message = $"{ex.Message}";
             JWT = null;
+            claimsPrincipal = null;
             return false;
         }
     }
 
-    public bool ValidateTokenEncrypted(string Token, out string Message, out SecurityToken? JWT)
+    public bool ValidateTokenEncrypted(string Token, out string Message, out SecurityToken? JWT, out ClaimsPrincipal? claimsPrincipal)
     {
         try
         {
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
             ClaimsPrincipal user = tokenHandler.ValidateToken(Token, GetTokenValidationParametersEncrypted(), out JWT);
             Message = "Token is validated";
+            claimsPrincipal = user;
             return true;
         }
         catch (Exception ex)
         {
             Message = $"{ex.Message}";
             JWT = null;
+            claimsPrincipal = null;
             return false;
         }
     }
